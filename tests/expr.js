@@ -1,4 +1,4 @@
-/* Kisötös – tesztsegéd: a feladatszövegek matematikai jelölését (x^2, [[a/b]], √(…), sin, ln, log_2, |x|, π, e)
+/* Matek 1 – tesztsegéd: a feladatszövegek matematikai jelölését (x^2, [[a/b]], √(…), sin, ln, log_2, |x|, π, e)
    kiszámítható függvénnyé alakítja. Így a megoldókulcsot (derivált, primitív függvény, határérték, értelmezési tartomány)
    a generátortól függetlenül, numerikusan ellenőrizhetjük. */
 'use strict';
