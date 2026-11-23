@@ -1,0 +1,12 @@
+{
+  "name": "Matek 1 vizsgafelkészítő – SZE MSTM001",
+  "short_name": "Matek 1",
+  "description": "Széchenyi István Egyetem, Matematika 1 (MSTM001): leckék, gyakorlás és próbavizsga magyarul és angolul.",
+  "lang": "hu",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBFAF6",
+  "theme_color": "#FBFAF6",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
