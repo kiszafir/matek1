@@ -1,5 +1,5 @@
 /* Matek 1 vizsgafelkészítő – offline működés: az app saját fájljait eltárolja, és net nélkül onnan szolgálja ki. */
-var CACHE = 'matek1-sze-v2';
+var CACHE = 'matek1-sze-v3';
 var FILES = ['./', 'index.html', 'css/app.css', 'js/core.js', 'js/base.js', 'js/figures.js', 'js/sze1.js', 'js/sze2.js', 'js/sze3.js', 'js/sze4.js', 'js/szeen1.js', 'js/szeen2.js', 'js/szeen3.js', 'js/szeen4.js', 'js/meres.js', 'js/app.js', 'icon.svg', 'manifest.webmanifest'];
 self.addEventListener('install', function (e) { e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); })); });
 self.addEventListener('activate', function (e) {
