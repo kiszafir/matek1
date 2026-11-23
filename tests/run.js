@@ -4,7 +4,7 @@
    3) Böngésző nélkül végigjárjuk a képernyőket magyarul és angolul. */
 'use strict';
 var path = require('path');
-['core', 'base', 'figures', 'sze1', 'sze2', 'sze3', 'sze4', 'szeen1', 'szeen2', 'szeen3', 'szeen4', 'app'].forEach(function (f) { require(path.join(__dirname, '..', 'js', f + '.js')); });
+['core', 'base', 'figures', 'sze1', 'sze2', 'sze3', 'sze4', 'szeen1', 'szeen2', 'szeen3', 'szeen4', 'meres', 'app'].forEach(function (f) { require(path.join(__dirname, '..', 'js', f + '.js')); });
 var KO = globalThis.KO, fails = 0, checks = 0;
 function ok(cond, msg) { checks++; if (!cond) { fails++; if (fails <= 25) console.log('HIBA: ' + msg); } }
 

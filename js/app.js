@@ -398,6 +398,11 @@
       '<p class="muted small">' + U('A haladásod nyelvváltáskor megmarad: a két nyelv ugyanazokat a témákat tanítja.', 'Your progress is kept when you switch: both languages teach the same topics.') + '</p></div>' +
       '<div class="card"><div class="eyebrow">' + U('Megjelenés', 'Appearance') + '</div><div class="seg-row">' + seg(U('Automatikus', 'Automatic'), 'tema', 'auto', st.theme === 'auto') + seg(U('Világos', 'Light'), 'tema', 'light', st.theme === 'light') + seg(U('Sötét', 'Dark'), 'tema', 'dark', st.theme === 'dark') + '</div>' +
       '<div class="seg-row">' + seg(U('Nagyobb betű: ', 'Larger text: ') + (st.calm ? U('be', 'on') : U('ki', 'off')), 'calm', '', st.calm) + seg(U('Felolvasás gomb: ', 'Read-aloud button: ') + (st.voice ? U('be', 'on') : U('ki', 'off')), 'hang', '', st.voice) + '</div></div>';
+    if (KO.meres) {
+      var mon = KO.meres.on();
+      h += '<div class="card"><div class="eyebrow">' + U('Látogatottság-mérés', 'Visitor statistics') + '</div><div class="seg-row">' + seg(U('Mérés ezen az eszközön: ', 'Count my visits on this device: ') + (mon ? U('be', 'on') : U('ki', 'off')), 'meres', '', mon) + '</div>' +
+        '<p class="muted small">' + U('Névtelenül mérjük, hányan használják az oldalt és mennyi ideig: süti, név és e-mail-cím nélkül. Itt kikapcsolhatod ezen az eszközön.', 'We count anonymously how many people use the site and for how long: no cookies, no names, no email addresses. You can switch it off for this device here.') + '</p></div>';
+    }
     h += '<div class="card"><div class="eyebrow">' + U('Jelentett hibák: ', 'Reported mistakes: ') + A.S.reports.length + '</div>' +
       (A.S.reports.length ? '<textarea class="reports" readonly aria-label="' + U('Jelentett hibák listája', 'List of reported mistakes') + '" rows="3">' + esc(JSON.stringify(A.S.reports)) + '</textarea><p class="muted small">' + U('Ezt a szöveget másold ki és küldd el a fejlesztőnek: a feladat pontosan újra előállítható belőle.', 'Copy this text and send it to the developer: the task can be reproduced exactly from it.') + '</p>' : '<p class="muted small">' + U('Ha egy feladatban hibát látsz, a „Hibát találtam” gombbal jelezd.', 'If you see a mistake in a task, report it with the "Report a mistake" button.') + '</p>') + '</div>' +
       '<div class="card"><div class="eyebrow">' + U('Adataid', 'Your data') + '</div><p class="muted small">' + U('Minden adat csak ezen az eszközön van. Fiók, hirdetés és követés nincs.', 'All data stays on this device. No account, no ads, no tracking.') + '</p>' +
@@ -570,6 +575,7 @@
     'tema-valt': function () { var st = A.S.settings, dark = st.theme === 'dark' || (st.theme === 'auto' && A.prefersDark); st.theme = dark ? 'light' : 'dark'; save(); },
     calm: function () { A.S.settings.calm = !A.S.settings.calm; save(); },
     hang: function () { A.S.settings.voice = !A.S.settings.voice; save(); },
+    meres: function () { if (KO.meres) KO.meres.set(!KO.meres.on()); },
     'vz-start': function (arg) { A.ui.ex = KO.szeExam(arg, A.S.seed++, isEn() ? 'en' : 'hu'); A.ui.screen = 'vizsga'; A.ui.back = 'vizsgak'; save(); },
     'vz-valaszt': function (arg) { var ex = A.ui.ex, a = String(arg).split(':'); if (!ex || ex.done) return; var i = Number(a[0]), j = Number(a[1]); if (ex.sel[i] === j) delete ex.sel[i]; else ex.sel[i] = j; },
     'vz-beadom': function () {
@@ -616,6 +622,7 @@
       if (main) main.scrollTop = key === lastKey ? oldTop : 0;
       if (key === lastKey) { if (window.pageYOffset !== oldWin) window.scrollTo(0, oldWin); } else window.scrollTo(0, 0);
       lastKey = key;
+      if (KO.meres) KO.meres.screen(A.ui.screen + (A.ui.screen === 'lecke' || A.ui.screen === 'gyak' ? '/' + A.ui.topic : '') + (A.ui.screen === 'vizsga' && A.ui.ex ? '/' + A.ui.ex.kind : ''), document.title);
       var fb = root.querySelector('.fb[role="status"], .in-err');
       if (fb && fb.scrollIntoView) fb.scrollIntoView({ block: 'nearest' });
     };
